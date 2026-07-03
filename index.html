@@ -469,6 +469,159 @@ header{
 }
 
 /* ============================================================
+   PLANOS
+   ============================================================ */
+.plans{ padding:150px 0; }
+
+.plans-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
+  align-items:start;
+  margin-bottom:110px;
+}
+
+.plan-card{
+  position:relative;
+  display:flex; flex-direction:column;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  background:var(--bg-panel);
+  overflow:hidden;
+  transition:transform .5s var(--ease), border-color .4s var(--ease), box-shadow .5s var(--ease);
+}
+.plan-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--border-strong);
+  box-shadow:0 34px 70px -30px rgba(0,0,0,.6);
+}
+.plan-card.featured{
+  border-color:rgba(37,99,235,.45);
+  background:linear-gradient(180deg, rgba(37,99,235,.10), var(--bg-panel) 55%);
+  box-shadow:0 0 0 1px rgba(37,99,235,.18) inset, 0 30px 70px -30px rgba(37,99,235,.35);
+  transform:scale(1.045);
+  z-index:2;
+}
+.plan-card.featured:hover{ transform:scale(1.045) translateY(-8px); }
+
+.plan-badge{
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+  z-index:3;
+  font-family:var(--font-mono); font-size:11px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:#fff; background:var(--accent);
+  padding:7px 18px; border-radius:100px;
+  box-shadow:0 10px 24px -8px var(--accent-glow), 0 0 0 4px var(--bg) ;
+  white-space:nowrap;
+}
+
+.plan-head{ padding:38px 30px 26px; border-bottom:1px dashed var(--border); }
+.plan-card.featured .plan-head{ padding-top:42px; }
+.plan-tier{
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--text-faint); margin-bottom:16px;
+  display:flex; align-items:center; gap:9px;
+}
+.plan-tier::before{
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:var(--text-faint);
+}
+.plan-card.featured .plan-tier{ color:var(--accent-light); }
+.plan-card.featured .plan-tier::before{ background:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); }
+
+.plan-price{ display:flex; align-items:baseline; gap:5px; }
+.plan-price .currency{ font-family:var(--font-display); font-size:17px; color:var(--text-muted); font-weight:500; }
+.plan-price .value{ font-family:var(--font-display); font-weight:600; font-size:42px; letter-spacing:-.02em; }
+
+.plan-desc{ margin-top:16px; font-size:14px; color:var(--text-muted); line-height:1.6; max-width:260px; }
+
+.plan-body{ padding:28px 30px 32px; flex:1; display:flex; flex-direction:column; }
+.plan-features{ display:grid; gap:13px; margin-bottom:32px; flex:1; }
+.plan-features li{ display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--text); line-height:1.4; }
+.plan-features li svg{ flex-shrink:0; margin-top:2.5px; width:15px; height:15px; color:var(--accent-light); }
+.plan-features .inherits{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text-faint); margin:2px 0 -1px;
+}
+
+.plan-card .btn{ width:100%; justify-content:center; }
+
+@media (max-width:960px){
+  .plans-grid{ grid-template-columns:1fr; max-width:440px; margin-left:auto; margin-right:auto; }
+  .plan-card.featured{ transform:none; }
+  .plan-card.featured:hover{ transform:translateY(-8px); }
+}
+
+/* ---- serviços avulsos ---- */
+.extra-services{ margin-bottom:90px; }
+.extra-services-head{ display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-bottom:34px; flex-wrap:wrap; }
+.extra-services-head h3{ font-family:var(--font-display); font-size:22px; font-weight:500; }
+.extra-services-head p{ color:var(--text-muted); font-size:14px; }
+
+.extra-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.extra-card{
+  border-radius:var(--radius-md);
+  border:1px solid var(--border);
+  background:var(--bg-panel);
+  padding:24px 18px; text-align:center;
+  transition:transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
+}
+.extra-card:hover{ transform:translateY(-5px); border-color:var(--border-strong); background:var(--bg-elevated); }
+.extra-icon{
+  width:36px; height:36px; margin:0 auto 16px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  background:var(--accent-glow);
+  color:var(--accent-light);
+}
+.extra-icon svg{ width:16px; height:16px; }
+.extra-name{ font-size:13.5px; font-weight:500; margin-bottom:7px; line-height:1.3; }
+.extra-price{ font-family:var(--font-mono); font-size:12.5px; color:var(--accent-light); }
+
+@media (max-width:900px){ .extra-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:560px){ .extra-grid{ grid-template-columns:repeat(2,1fr); } }
+
+/* ---- condições de pagamento + prazo ---- */
+.plans-meta{ display:grid; grid-template-columns:1.5fr .9fr; gap:24px; }
+
+.payment-card{
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border);
+  background:var(--bg-panel);
+  padding:36px;
+  display:flex; gap:30px; flex-wrap:wrap;
+}
+.payment-step{ flex:1; min-width:190px; display:flex; gap:16px; align-items:flex-start; }
+.payment-step .num{
+  width:40px; height:40px; flex-shrink:0; border-radius:50%;
+  background:var(--accent-glow); color:var(--accent-light);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-weight:600; font-size:15px;
+  border:1px solid rgba(37,99,235,.3);
+}
+.payment-step h4{ font-size:15.5px; font-weight:500; margin-bottom:5px; }
+.payment-step p{ font-size:13.5px; color:var(--text-muted); line-height:1.5; }
+
+.deadline-card{
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border-strong);
+  background:linear-gradient(160deg, var(--bg-elevated), var(--bg-panel));
+  padding:36px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+}
+.deadline-icon{
+  width:44px; height:44px; border-radius:50%;
+  background:var(--accent-glow); color:var(--accent-light);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+}
+.deadline-icon svg{ width:20px; height:20px; }
+.deadline-card .deadline-value{ font-family:var(--font-display); font-weight:600; font-size:24px; margin-bottom:8px; }
+.deadline-card p{ font-size:12.5px; color:var(--text-faint); max-width:220px; line-height:1.5; }
+
+@media (max-width:860px){ .plans-meta{ grid-template-columns:1fr; } .payment-card{ padding:30px; } }
+@media (max-width:520px){ .payment-card{ flex-direction:column; } }
+
+/* ============================================================
    TESTIMONIALS
    ============================================================ */
 .testimonials{ padding:150px 0; }
@@ -866,6 +1019,161 @@ footer{ border-top:1px solid var(--border); padding:60px 0 40px; }
           </a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANOS ================= -->
+<section class="plans" id="planos">
+  <div class="wrap">
+    <div class="eyebrow center">Investimento</div>
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <h2>Escolha o plano ideal para o seu projeto</h2>
+      <p style="margin-left:auto;margin-right:auto;">Desenvolvimento profissional de sites com soluções para empresas de todos os tamanhos.</p>
+    </div>
+
+    <!-- ---- cards de planos ---- -->
+    <div class="plans-grid">
+
+      <!-- Essencial -->
+      <div class="plan-card reveal">
+        <div class="plan-head">
+          <div class="plan-tier">Plano Essencial</div>
+          <div class="plan-price"><span class="currency">R$</span><span class="value">2.000</span></div>
+          <p class="plan-desc">Ideal para quem precisa de um site profissional e funcional.</p>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Site institucional completo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Design moderno e responsivo (celular, tablet e computador)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Integração com WhatsApp</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Formulário de contato</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> SEO básico</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Otimização de desempenho</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Publicação do site</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Até 30 dias de suporte e pequenos ajustes</li>
+          </ul>
+          <a href="https://wa.me/5511995005688?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20do%20Plano%20Essencial" class="btn btn-ghost" target="_blank" rel="noopener">Solicitar Orçamento</a>
+        </div>
+      </div>
+
+      <!-- Plus (destaque) -->
+      <div class="plan-card featured reveal">
+        <div class="plan-badge">Mais Escolhido</div>
+        <div class="plan-head">
+          <div class="plan-tier">Plano Plus</div>
+          <div class="plan-price"><span class="currency">R$</span><span class="value">2.800</span></div>
+          <p class="plan-desc">Ideal para empresas que querem segurança e acompanhamento.</p>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li class="inherits">Inclui tudo do Essencial +</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Registro e configuração de domínio</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Configuração da hospedagem</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 3 meses de manutenção</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Atualizações de conteúdo durante o período</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Backup periódico</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Prioridade no atendimento</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Até 3 novas páginas inclusas</li>
+          </ul>
+          <a href="https://wa.me/5511995005688?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20do%20Plano%20Plus" class="btn btn-primary" target="_blank" rel="noopener">Solicitar Orçamento</a>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card reveal">
+        <div class="plan-head">
+          <div class="plan-tier">Plano Premium</div>
+          <div class="plan-price"><span class="currency">R$</span><span class="value">3.800</span></div>
+          <p class="plan-desc">Ideal para empresas que desejam máxima performance e tranquilidade.</p>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features">
+            <li class="inherits">Inclui tudo do Plus +</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 12 meses de manutenção</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Alterações ilimitadas de conteúdo durante a vigência</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Criação de novas páginas quando necessário</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Otimizações contínuas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Monitoramento do site</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Relatórios mensais</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Suporte prioritário via WhatsApp</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Consultoria para melhorias</li>
+          </ul>
+          <a href="https://wa.me/5511995005688?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento%20do%20Plano%20Premium" class="btn btn-ghost" target="_blank" rel="noopener">Solicitar Orçamento</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---- serviços avulsos ---- -->
+    <div class="extra-services">
+      <div class="extra-services-head">
+        <h3>Serviços Avulsos</h3>
+        <p>Precisa de algo pontual? Também atendo fora dos planos.</p>
+      </div>
+      <div class="extra-grid">
+        <div class="extra-card reveal">
+          <div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></div>
+          <div class="extra-name">Manutenção Mensal</div>
+          <div class="extra-price">R$150/mês</div>
+        </div>
+        <div class="extra-card reveal">
+          <div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+          <div class="extra-name">Alterações Pontuais</div>
+          <div class="extra-price">R$80/hora</div>
+        </div>
+        <div class="extra-card reveal">
+          <div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M12 12v6M9 15h6"/></svg></div>
+          <div class="extra-name">Nova Página</div>
+          <div class="extra-price">R$250/página</div>
+        </div>
+        <div class="extra-card reveal">
+          <div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></div>
+          <div class="extra-name">Registro de Domínio</div>
+          <div class="extra-price">R$40–60/ano</div>
+        </div>
+        <div class="extra-card reveal">
+          <div class="extra-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><path d="M6 6.5h.01M6 17.5h.01"/></svg></div>
+          <div class="extra-name">Hospedagem</div>
+          <div class="extra-price">a partir de R$25/mês</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- condições de pagamento + prazo ---- -->
+    <div class="plans-meta">
+      <div class="payment-card reveal">
+        <div class="payment-step">
+          <div class="num">1</div>
+          <div>
+            <h4>50% na aprovação</h4>
+            <p>Sinal para dar início ao planejamento e desenvolvimento do projeto.</p>
+          </div>
+        </div>
+        <div class="payment-step">
+          <div class="num">2</div>
+          <div>
+            <h4>50% na entrega</h4>
+            <p>Restante pago na publicação, com o site pronto e funcionando.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="deadline-card reveal">
+        <div class="deadline-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="deadline-value">10 a 15 dias úteis</div>
+        <p>Prazo de entrega. Pode variar conforme a complexidade do projeto.</p>
+      </div>
+    </div>
+
+    <!-- ---- CTA da seção ---- -->
+    <div class="cta-box reveal" style="margin-top:90px;">
+      <h2>Pronto para transformar sua presença digital?</h2>
+      <p>Vamos desenvolver um site moderno, rápido e focado em resultados para o seu negócio.</p>
+      <a href="https://wa.me/5511995005688?text=Ol%C3%A1%2C%20quero%20solicitar%20um%20or%C3%A7amento" class="btn btn-primary" target="_blank" rel="noopener">
+        Solicitar Orçamento via WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
     </div>
   </div>
 </section>
